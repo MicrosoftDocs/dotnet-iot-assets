@@ -44,7 +44,7 @@ echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.bashrc
 source ~/.bashrc
 
 # Clone the code
-declare iotBits="https://github.com/dotnet/iot"
+declare iotBits="https://github.com/MicrosoftDocs/dotnet-iot-assets"
 declare cloneCmd="git clone $iotBits dotnet-iot"
 cd ~
 echo Downloading from $iotBits...
@@ -55,9 +55,9 @@ eval $cloneCmd
 echo
 
 # Build the code
-cd ~/dotnet-iot/src/devices/SenseHat/samples
+cd ~/dotnet-iot/quickstarts/SenseHat.Quickstart
 declare buildCmd="dotnet build"
-echo Building SenseHat.Sample...
+echo Building SenseHat.Quickstart...
 echo 
 echo "> ${dotnetCliCommandStyle}$buildCmd${defaultTextStyle}"
 echo 
@@ -66,7 +66,7 @@ echo
 
 # Run the code
 declare runCmd="dotnet run"
-echo Running SenseHat.Sample...
+echo Running SenseHat.Quickstart...
 echo 
 echo "> ${dotnetCliCommandStyle}$runCmd${defaultTextStyle}"
 echo 
