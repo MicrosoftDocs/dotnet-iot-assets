@@ -1,5 +1,4 @@
 # Script parameters
-
 declare dotnetVersion="5.0.100-rc.2.20479.15"
 
 # Text formatting
@@ -32,12 +31,19 @@ echo
 echo Installing .NET SDK v$dotnetVersion...
 echo
 
+# Install .NET
 declare installCmd="curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --version $dotnetVersion"
 echo "> ${yellow}$installCmd${defaultTextStyle}"
 echo
 eval $installCmd
 echo
 
+# Add .dotnet directory to PATH and DOTNET_ROOT
+echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.bashrc
+echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.bashrc
+source ~/.bashrc
+
+# Clone the code
 declare iotBits="https://github.com/dotnet/iot"
 declare cloneCmd="git clone $iotBits dotnet-iot"
 cd ~
@@ -48,6 +54,7 @@ echo
 eval $cloneCmd
 echo
 
+# Build the code
 cd ~/dotnet-iot/src/devices/SenseHat/samples
 declare buildCmd="dotnet build"
 echo Building SenseHat.Sample...
@@ -57,6 +64,7 @@ echo
 eval $buildCmd
 echo 
 
+# Run the code
 declare runCmd="dotnet run"
 echo Running SenseHat.Sample...
 echo 
@@ -64,3 +72,5 @@ echo "> ${dotnetCliCommandStyle}$runCmd${defaultTextStyle}"
 echo 
 eval $runCmd
 echo 
+
+# Happy IoT hacking!
