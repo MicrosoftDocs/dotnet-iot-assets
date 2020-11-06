@@ -1,5 +1,6 @@
 # Script parameters
 declare dotnetVersion="5.0.100-rc.2.20479.15"
+declare iotBits="https://github.com/MicrosoftDocs/dotnet-iot-assets"
 
 # Text formatting
 declare red=`tput setaf 1`
@@ -44,7 +45,6 @@ echo 'export PATH=$PATH:$HOME/.dotnet' >> ~/.bashrc
 source ~/.bashrc
 
 # Clone the code
-declare iotBits="https://github.com/MicrosoftDocs/dotnet-iot-assets"
 declare cloneCmd="git clone $iotBits dotnet-iot"
 cd ~
 echo Downloading from $iotBits...
