@@ -4,9 +4,9 @@ using System.Threading;
 using Iot.Device.Bmxx80;
 using Iot.Device.Bmxx80.PowerMode;
 
-I2cConnectionSettings i2cSettings = new I2cConnectionSettings(1, Bme280.DefaultI2cAddress);
+var i2cSettings = new I2cConnectionSettings(1, Bme280.DefaultI2cAddress);
 using I2cDevice i2cDevice = I2cDevice.Create(i2cSettings);
-using Bme280 bme280 = new Bme280(i2cDevice);
+using var bme280 = new Bme280(i2cDevice);
 
 int measurementTime = bme280.GetMeasurementDuration();
 

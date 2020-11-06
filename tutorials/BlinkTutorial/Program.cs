@@ -4,7 +4,7 @@ using System.Threading;
 
 Console.WriteLine("Blinking LED. Press Ctrl+C to end.");
 int pin = 18;
-using GpioController controller = new GpioController();
+using var controller = new GpioController();
 controller.OpenPin(pin, PinMode.Output);
 bool ledOn = true;
 while (true)

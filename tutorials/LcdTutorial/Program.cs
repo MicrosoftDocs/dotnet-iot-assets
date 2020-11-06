@@ -3,14 +3,13 @@ using System.Device.Gpio;
 using System.Device.I2c;
 using System.Threading;
 using Iot.Device.CharacterLcd;
-using Iot.Device.Mcp23xxx;
 using Iot.Device.Pcx857x;
 
 Console.WriteLine("Displaying current time. Press Ctrl+C to end.");
 
 using I2cDevice i2c = I2cDevice.Create(new I2cConnectionSettings(1, 0x27));
-using Pcf8574 driver = new Pcf8574(i2c);
-using Lcd2004 lcd = new Lcd2004(registerSelectPin: 0, 
+using var driver = new Pcf8574(i2c);
+using var lcd = new Lcd2004(registerSelectPin: 0, 
                         enablePin: 2, 
                         dataPins: new int[] { 4, 5, 6, 7 }, 
                         backlightPin: 3, 
