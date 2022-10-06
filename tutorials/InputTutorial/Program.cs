@@ -9,7 +9,7 @@ using var controller = new GpioController();
 controller.OpenPin(Pin, PinMode.InputPullUp);
 
 Console.WriteLine(
-    $"Initial status ({DateTime.Now}): {(controller.Read(pin) is PinValue.High ? Alert : Ready)}");
+    $"Initial status ({DateTime.Now}): {(controller.Read(Pin) == PinValue.High ? Alert : Ready)}");
 
 controller.RegisterCallbackForPinValueChangedEvent(
     Pin,
