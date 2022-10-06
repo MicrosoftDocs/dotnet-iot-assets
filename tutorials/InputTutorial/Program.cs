@@ -1,20 +1,25 @@
-﻿using System.Device.Gpio;
-using System.Threading;
+using System.Device.Gpio;
+using System.Threading.Tasks;
 
-int pin = 21;
-string alert = "ALERT! 🚨";
-string ready = "Ready ✅";
+const int Pin = 21;
+const string Alert = "ALERT 🚨";
+const string Ready = "READY ✅";
 
 using var controller = new GpioController();
-controller.OpenPin(pin, PinMode.InputPullUp);
-Console.WriteLine($"Initial status ({DateTime.Now}): {(controller.Read(pin) == PinValue.High ? alert : ready)}");
-controller.RegisterCallbackForPinValueChangedEvent(pin, 
-    PinEventTypes.Falling | PinEventTypes.Rising, 
-    (sender, args) => onPinEvent(sender, args));
+controller.OpenPin(Pin, PinMode.InputPullUp);
 
-Thread.Sleep(Timeout.Infinite);
+Console.WriteLine(
+    $"Initial status ({DateTime.Now}): {(controller.Read(pin) is PinValue.High ? Alert : Ready)}");
 
-void onPinEvent(object sender, PinValueChangedEventArgs pinValueChangedEventArgs)
+controller.RegisterCallbackForPinValueChangedEvent(
+    Pin,
+    PinEventTypes.Falling | PinEventTypes.Rising,
+    OnPinEvent);
+
+await Task.Delay(Timeout.Infinite);
+
+static void OnPinEvent(object sender, PinValueChangedEventArgs args)
 {     
-    Console.WriteLine($"({DateTime.Now}) {(pinValueChangedEventArgs.ChangeType == PinEventTypes.Rising ? alert : ready)}");
+    Console.WriteLine(
+        $"({DateTime.Now}) {(args.ChangeType is PinEventTypes.Rising ? Alert : Ready)}");
 }
