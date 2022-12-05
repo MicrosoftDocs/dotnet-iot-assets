@@ -1,5 +1,5 @@
 # Script parameters
-declare dotnetVersion="6.0.401"
+declare dotnetVersion="7.0.100"
 declare iotBits="https://github.com/MicrosoftDocs/dotnet-iot-assets"
 
 # Text formatting
