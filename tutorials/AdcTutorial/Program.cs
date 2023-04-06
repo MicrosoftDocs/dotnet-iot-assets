@@ -9,9 +9,9 @@ using SpiDevice spi = SpiDevice.Create(hardwareSpiSettings);
 using var mcp = new Mcp3008(spi);
 while (true)
 {
+    Console.Clear();
     double value = mcp.Read(0);
-    value = value / 10.24;
-    value = Math.Round(value);
-    Console.WriteLine($"{value}%");
+    Console.WriteLine($"{value}");
+    Console.WriteLine($"{Math.Round(value/10.23, 1)}%");
     Thread.Sleep(500);
 }
