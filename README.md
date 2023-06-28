@@ -2,7 +2,7 @@
 languages:
 - csharp
 products:
-- dotnet-core
+- dotnet
 page_type: sample
 name: "Sample apps and scripts to accompany .NET IoT Libraries documentation"
 urlFragment: "dotnet-iot-assets"
