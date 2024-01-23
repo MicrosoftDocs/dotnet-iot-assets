@@ -4,12 +4,11 @@ using Iot.Device.Bmxx80.PowerMode;
 using Iot.Device.Ft232H;
 using Iot.Device.FtCommon;
 
-var devices = FtCommon.GetDevices();
-var ft232h = new Ft232HDevice(devices[0]);
-var i2cSettings = new I2cConnectionSettings(0, Bme280.SecondaryI2cAddress);
+Ft232HDevice ft232h = new Ft232HDevice(FtCommon.GetDevices()[0]);
+I2cConnectionSettings i2cSettings = new I2cConnectionSettings(0, Bme280.SecondaryI2cAddress);
 
-using var i2cDevice = ft232h.CreateI2cDevice(i2cSettings);
-using var bme280 = new Bme280(i2cDevice);
+using I2cDevice i2cDevice = ft232h.CreateI2cDevice(i2cSettings);
+using Bme280 bme280 = new Bme280(i2cDevice);
 
 int measurementTime = bme280.GetMeasurementDuration();
 
