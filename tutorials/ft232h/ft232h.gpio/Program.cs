@@ -4,8 +4,8 @@ using Iot.Device.FtCommon;
 
 Console.WriteLine("Blinking LED. Press Ctrl+C to end.");
 
-var ft232h = new Ft232HDevice(FtCommon.GetDevices()[0]);
-var controller = ft232h.CreateGpioController();
+Ft232HDevice ft232h = new Ft232HDevice(FtCommon.GetDevices()[0]);
+GpioController controller = ft232h.CreateGpioController();
 
 int pin = Ft232HDevice.GetPinNumberFromString("D7");
 controller.OpenPin(pin, PinMode.Output);
