@@ -15,7 +15,7 @@ using var lcd = new Lcd2004(registerSelectPin: 0,
                         backlightPin: 3, 
                         backlightBrightness: 0.1f, 
                         readWritePin: 1, 
-                        controller: new GpioController(PinNumberingScheme.Logical, driver));
+                        controller: new GpioController(driver));
 int currentLine = 0;
 
 while (true)
